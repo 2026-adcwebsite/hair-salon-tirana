@@ -75,7 +75,7 @@ nav {
   background: none; border: none; cursor: pointer; padding: 4px;
 }
 .hamburger span {
-  width: 24px; height: 1.5px; background: var(--gold);
+  width: 24px; height: 1.8px; background: #6E4F25;
   transition: all 0.3s; display: block;
 }
 .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px,4.5px); }
@@ -86,10 +86,12 @@ nav {
 .mobile-menu {
   display: none; position: fixed;
   top: var(--nav-h); left:0; right:0; bottom:0;
-  background: rgba(10,10,10,0.98);
+  background: rgba(255, 248, 240, 0.97);
+  backdrop-filter: blur(14px);
   z-index: 999; flex-direction: column;
   align-items: center; justify-content: center;
-  gap: 36px;
+  gap: 34px;
+  border-top: 1px solid rgba(200,169,110,0.25);
 }
 .mobile-menu.open { display: flex; }
 .mobile-menu a {
@@ -98,8 +100,13 @@ nav {
   text-decoration: none; letter-spacing: 2px;
   cursor: pointer; transition: color 0.3s;
 }
-.mobile-menu a:hover { color: var(--gold); }
-.mobile-lang { margin-top: 20px; }
+.mobile-menu a:hover { color: #A6783A; transform: translateY(-2px); }
+.mobile-lang { 
+  margin-top: 20px; 
+  color: #2b241f;
+  border-color: rgba(166,120,58,0.55);
+  background: rgba(255,255,255,0.55);
+}
 
 /* ── PAGES ── */
 .page { display: none; min-height: 100vh; padding-top: var(--nav-h); }
