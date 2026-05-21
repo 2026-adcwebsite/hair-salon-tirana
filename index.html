@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumière Hair Studio – Tiranë</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #B88A44;
+  --gold-light: #E8CFA2;
+  --dark: #FFF8F0;
+  --dark2: #FFFFFF;
+  --dark3: #F6EBDD;
+  --cream: #FFF8F0;
+  --cream2: #F4E6D2;
+  --text: #3E2A24;
+  --text-muted: #8B7468;
+  --accent: #D98B9A;
+  --white: #FFFFFF;
+  --nav-h: 72px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: linear-gradient(180deg, #FFF8F0 0%, #F7EBDD 55%, #FFFDF8 100%);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:1000;
+  height: var(--nav-h);
+  background: rgba(255,248,240,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(184,138,68,0.22);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(20px,5vw,60px);
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600;
+  color: var(--gold); letter-spacing: 2px;
+  cursor: pointer; text-transform: uppercase;
+}
+.logo span { font-style: italic; font-weight: 300; color: var(--text); }
+.nav-links {
+  display: flex; gap: 32px; align-items: center;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text-muted); text-decoration: none;
+  font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase;
+  font-weight: 400; transition: color 0.3s;
+  cursor: pointer;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.lang-toggle {
+  background: none; border: 1px solid rgba(200,169,110,0.3);
+  color: var(--gold); font-size: 11px; letter-spacing: 2px;
+  padding: 6px 14px; border-radius: 20px; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-weight: 500;
+  transition: all 0.3s;
+}
+.lang-toggle:hover { background: var(--gold); color: var(--dark); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  width: 24px; height: 1.5px; background: var(--gold);
+  transition: all 0.3s; display: block;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px,4.5px); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px,-4.5px); }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none; position: fixed;
+  top: var(--nav-h); left:0; right:0; bottom:0;
+  background: rgba(10,10,10,0.98);
+  z-index: 999; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 36px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 300; color: var(--text);
+  text-decoration: none; letter-spacing: 2px;
+  cursor: pointer; transition: color 0.3s;
+}
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-lang { margin-top: 20px; }
+
+/* ── PAGES ── */
+.page { display: none; min-height: 100vh; padding-top: var(--nav-h); }
+.page.active { display: block; }
+
+/* ── HOME ── */
+.hero {
+  position: relative; min-height: calc(100vh - var(--nav-h));
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset:0;
+  background: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1800&q=90') center/cover no-repeat;
+}
+.hero-overlay {
+  position: absolute; inset:0;
+  background: linear-gradient(110deg, rgba(255,248,240,0.94) 0%, rgba(255,248,240,0.76) 45%, rgba(217,139,154,0.20) 78%, rgba(62,42,36,0.10) 100%);
+}
+.hero-content {
+  position: relative; z-index:2;
+  padding: clamp(40px,8vw,100px) clamp(20px,6vw,80px);
+  max-width: 700px;
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); border: 1px solid rgba(200,169,110,0.4);
+  padding: 8px 20px; border-radius: 20px; margin-bottom: 30px;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px,8vw,90px);
+  font-weight: 300; line-height: 1.05;
+  color: #3E2A24; margin-bottom: 24px;
+}
+.hero-title em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-size: 16px; color: rgba(62,42,36,0.72);
+  max-width: 480px; margin-bottom: 44px;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gold); color: var(--dark);
+  padding: 16px 36px; border-radius: 999px;
+  font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+  font-weight: 500; text-decoration: none; cursor: pointer;
+  border: none; transition: all 0.3s; font-family: 'DM Sans', sans-serif;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; color: var(--text);
+  padding: 15px 36px; border-radius: 999px;
+  font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+  font-weight: 500; cursor: pointer;
+  border: 1px solid rgba(240,234,224,0.3);
+  transition: all 0.3s; font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.hero-stats {
+  position: absolute; bottom: 40px; right: clamp(20px,6vw,80px);
+  display: flex; gap: 40px; z-index:2;
+}
+.stat { text-align: right; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px; font-weight: 300; color: var(--gold); line-height:1;
+}
+.stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+
+
+.hero-promo-card {
+  position: absolute; right: clamp(20px,6vw,80px); top: 50%;
+  transform: translateY(-50%);
+  width: min(330px, 34vw); z-index: 2;
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(184,138,68,0.24);
+  box-shadow: 0 24px 60px rgba(62,42,36,0.18);
+  backdrop-filter: blur(14px);
+  border-radius: 28px;
+  padding: 18px;
+}
+.hero-promo-card img {
+  width: 100%; height: 260px; object-fit: cover; border-radius: 22px;
+}
+.hero-promo-card .promo-text {
+  padding: 18px 8px 6px; color: var(--text);
+}
+.hero-promo-card .promo-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px; line-height: 1.05; color: var(--gold);
+}
+.hero-promo-card .promo-sub { font-size: 13px; color: var(--text-muted); margin-top: 8px; }
+@media (max-width: 900px) { .hero-promo-card { display: none; } }
+
+/* Features strip */
+.features-strip {
+  background: var(--dark2); border-top: 1px solid rgba(200,169,110,0.1);
+  border-bottom: 1px solid rgba(200,169,110,0.1);
+  padding: 28px clamp(20px,5vw,60px);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 20px;
+}
+.feat-item { display: flex; align-items: center; gap: 14px; }
+.feat-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(200,169,110,0.1); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink:0;
+}
+.feat-text { font-size: 13px; color: var(--text-muted); }
+.feat-text strong { display: block; color: var(--text); font-size: 14px; font-weight: 500; }
+
+/* Gallery strip */
+.gallery-strip {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  height: 280px; overflow: hidden;
+}
+.gallery-strip div {
+  overflow: hidden; cursor: pointer;
+}
+.gallery-strip div img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease; filter: brightness(0.8);
+}
+.gallery-strip div:hover img { transform: scale(1.08); filter: brightness(1); }
+
+/* About section on home */
+.home-about {
+  padding: clamp(60px,10vw,120px) clamp(20px,6vw,80px);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.section-tag {
+  display: inline-block; font-size: 11px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px,5vw,56px); font-weight: 300;
+  line-height: 1.1; margin-bottom: 24px; color: var(--white);
+}
+.section-title em { font-style: italic; color: var(--gold); }
+.about-img-wrap { position: relative; }
+.about-img-wrap img {
+  width: 100%; height: 480px; object-fit: cover;
+  border-radius: 2px;
+}
+.about-badge {
+  position: absolute; bottom: -20px; left: -20px;
+  background: var(--gold); color: var(--dark);
+  padding: 24px; min-width: 140px; text-align: center;
+}
+.about-badge strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px; font-weight: 300;
+}
+.about-badge span { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+
+/* ── SERVICES ── */
+.page-header {
+  background: var(--dark2); padding: 60px clamp(20px,6vw,80px) 40px;
+  border-bottom: 1px solid rgba(200,169,110,0.1);
+}
+.services-grid {
+  padding: 60px clamp(20px,6vw,80px);
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
+  gap: 2px; background: rgba(200,169,110,0.08);
+}
+.service-card {
+  background: var(--dark2); padding: 44px 36px;
+  transition: background 0.3s; position: relative; overflow: hidden;
+}
+.service-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background: var(--gold); transform: scaleX(0); transition: transform 0.4s;
+}
+.service-card:hover { background: var(--dark3); }
+.service-card:hover::before { transform: scaleX(1); }
+.svc-icon { font-size: 32px; margin-bottom: 20px; }
+.svc-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 400; color: var(--white);
+  margin-bottom: 12px;
+}
+.svc-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.8; }
+.svc-prices { border-top: 1px solid rgba(200,169,110,0.15); padding-top: 20px; }
+.price-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.price-row:last-child { border-bottom: none; }
+.price-label { font-size: 13px; color: var(--text-muted); }
+.price-val { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--gold); }
+
+/* ── GALLERY ── */
+.gallery-page-grid {
+  padding: 60px clamp(20px,6vw,80px);
+  columns: 3; gap: 12px;
+}
+.gallery-page-grid figure {
+  break-inside: avoid; margin-bottom: 12px; overflow: hidden;
+  cursor: pointer; position: relative;
+}
+.gallery-page-grid figure img {
+  width: 100%; display: block; transition: transform 0.5s;
+}
+.gallery-page-grid figure:hover img { transform: scale(1.04); }
+.gallery-caption {
+  position: absolute; bottom:0; left:0; right:0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  color: var(--gold); font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; padding: 30px 16px 12px;
+  opacity:0; transition: opacity 0.3s;
+}
+.gallery-page-grid figure:hover .gallery-caption { opacity:1; }
+
+/* Lightbox */
+.lightbox {
+  display: none; position: fixed; inset:0; z-index: 9999;
+  background: rgba(0,0,0,0.95); align-items: center; justify-content: center;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+.lb-close {
+  position: absolute; top: 20px; right: 24px;
+  background: none; border: none; color: var(--gold);
+  font-size: 32px; cursor: pointer; line-height:1;
+}
+
+/* ── CALCULATOR ── */
+.calc-page { padding: 60px clamp(20px,6vw,80px); }
+.calc-wrap {
+  display: grid; grid-template-columns: 1fr 380px; gap: 60px;
+  max-width: 1100px;
+}
+.calc-services { display: flex; flex-direction: column; gap: 12px; }
+.calc-item {
+  background: var(--dark2); border: 1px solid rgba(200,169,110,0.1);
+  border-radius: 2px; padding: 20px 24px;
+  display: flex; align-items: center; gap: 20px; cursor: pointer;
+  transition: all 0.3s;
+}
+.calc-item:hover { border-color: rgba(200,169,110,0.3); }
+.calc-item.selected {
+  border-color: var(--gold); background: rgba(200,169,110,0.06);
+}
+.calc-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1.5px solid rgba(200,169,110,0.3);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink:0; transition: all 0.3s; font-size: 11px;
+}
+.calc-item.selected .calc-check {
+  background: var(--gold); border-color: var(--gold); color: var(--dark);
+}
+.calc-info { flex:1; }
+.calc-name { font-size: 15px; font-weight: 500; color: var(--white); }
+.calc-time { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.calc-price-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; color: var(--gold);
+}
+
+/* Variants selector */
+.variants { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(200,169,110,0.1); }
+.calc-item.selected .variants { display: flex; gap: 8px; flex-wrap: wrap; }
+.variant-btn {
+  background: none; border: 1px solid rgba(200,169,110,0.2);
+  color: var(--text-muted); padding: 6px 14px; border-radius: 20px;
+  font-size: 12px; cursor: pointer; transition: all 0.25s;
+  font-family: 'DM Sans', sans-serif;
+}
+.variant-btn:hover, .variant-btn.active {
+  border-color: var(--gold); color: var(--gold); background: rgba(200,169,110,0.08);
+}
+
+/* Receipt */
+.receipt {
+  background: var(--dark2); border: 1px solid rgba(200,169,110,0.15);
+  border-radius: 2px; padding: 36px; position: sticky; top: 100px;
+  align-self: start;
+}
+.receipt-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; color: var(--white); margin-bottom: 28px;
+  padding-bottom: 20px; border-bottom: 1px solid rgba(200,169,110,0.15);
+}
+.receipt-items { min-height: 100px; margin-bottom: 24px; }
+.receipt-row {
+  display: flex; justify-content: space-between;
+  padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 14px;
+}
+.receipt-row:last-child { border: none; }
+.receipt-row-name { color: var(--text-muted); }
+.receipt-row-price { color: var(--text); font-family: 'Cormorant Garamond', serif; font-size: 17px; }
+.receipt-total {
+  border-top: 1px solid rgba(200,169,110,0.3);
+  padding-top: 20px; display: flex;
+  justify-content: space-between; align-items: baseline;
+  margin-top: 8px;
+}
+.receipt-total-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
+.receipt-total-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px; color: var(--gold);
+}
+.receipt-empty { color: var(--text-muted); font-size: 14px; text-align: center; padding: 30px 0; font-style: italic; }
+.receipt-note { font-size: 12px; color: var(--text-muted); margin-top: 16px; line-height: 1.6; }
+.receipt-time { margin-top: 12px; font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+.receipt-time span { color: var(--gold); font-weight: 500; }
+
+/* ── BOOKING ── */
+.booking-page { padding: 60px clamp(20px,6vw,80px); }
+.booking-wrap { max-width: 660px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.form-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+.form-input {
+  background: var(--dark2); border: 1px solid rgba(200,169,110,0.15);
+  color: var(--text); padding: 14px 18px; border-radius: 2px;
+  font-size: 14px; font-family: 'DM Sans', sans-serif;
+  transition: border 0.3s; outline: none; width: 100%;
+}
+.form-input:focus { border-color: var(--gold); }
+.form-input option { background: var(--dark2); }
+.form-select { appearance: none; cursor: pointer; }
+.submit-btn {
+  background: var(--gold); color: var(--dark);
+  border: none; padding: 18px 48px; font-size: 12px;
+  letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500;
+  cursor: pointer; border-radius: 2px; font-family: 'DM Sans', sans-serif;
+  transition: all 0.3s; margin-top: 8px;
+}
+.submit-btn:hover { background: var(--gold-light); }
+.booking-success {
+  display: none; text-align: center; padding: 60px 40px;
+  background: var(--dark2); border: 1px solid rgba(200,169,110,0.2); border-radius: 2px;
+}
+.booking-success .check-icon { font-size: 48px; margin-bottom: 20px; }
+.booking-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--white); margin-bottom: 12px; }
+.booking-success p { color: var(--text-muted); }
+
+/* ── CONTACT / MAP ── */
+.contact-page { padding: 60px clamp(20px,6vw,80px); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.contact-info-block { display: flex; flex-direction: column; gap: 32px; }
+.contact-block { }
+.contact-block-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.contact-block-val { font-size: 16px; color: var(--text); }
+.contact-block-val a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+.contact-block-val a:hover { color: var(--gold); }
+.map-container {
+  border-radius: 2px; overflow: hidden;
+  border: 1px solid rgba(200,169,110,0.15); height: 480px;
+}
+.map-container iframe { width: 100%; height: 100%; border: none; }
+.hours-table { width: 100%; margin-top: 8px; }
+.hours-table tr td { padding: 7px 0; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.hours-table tr:last-child td { border: none; }
+.hours-table td:first-child { color: var(--text-muted); }
+.hours-table td:last-child { text-align: right; color: var(--text); }
+
+/* Social icons */
+.social-row { display: flex; gap: 16px; margin-top: 16px; }
+.social-link {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid rgba(200,169,110,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); text-decoration: none; font-size: 16px;
+  transition: all 0.3s;
+}
+.social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── ABOUT PAGE ── */
+.about-page { padding: 60px clamp(20px,6vw,80px); }
+.team-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr));
+  gap: 24px; margin-top: 48px;
+}
+.team-card { position: relative; overflow: hidden; }
+.team-card img { width: 100%; height: 320px; object-fit: cover; object-position: top; transition: transform 0.5s; display: block; }
+.team-card:hover img { transform: scale(1.05); }
+.team-info {
+  background: var(--dark2); padding: 20px;
+  border: 1px solid rgba(200,169,110,0.1);
+  border-top: 2px solid var(--gold);
+}
+.team-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--white); }
+.team-role { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-top: 4px; }
+.team-spec { font-size: 13px; color: var(--text-muted); margin-top: 8px; }
+
+.about-values { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 24px; margin-top: 60px; }
+.value-card { background: var(--dark2); padding: 36px 28px; border-left: 2px solid var(--gold); }
+.value-num {
+  font-family: 'Cormorant Garamond', serif; font-size: 52px;
+  color: rgba(200,169,110,0.15); line-height:1; margin-bottom: 16px;
+}
+.value-title { font-size: 16px; font-weight: 500; color: var(--white); margin-bottom: 10px; }
+.value-text { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark2); border-top: 1px solid rgba(200,169,110,0.1);
+  padding: 48px clamp(20px,6vw,80px) 28px;
+}
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold); margin-bottom: 16px; }
+.footer-tagline { font-size: 13px; color: var(--text-muted); max-width: 260px; line-height: 1.8; }
+.footer-col-title { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.2s; cursor: pointer; }
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-size: 12px; color: var(--text-muted); }
+
+
+/* ── WHATSAPP ── */
+.whatsapp-float {
+  position: fixed; right: 22px; bottom: 22px; z-index: 1200;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: #25D366; color: #fff; text-decoration: none;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.whatsapp-float:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 16px 40px rgba(0,0,0,0.45); }
+.whatsapp-float::after {
+  content: attr(aria-label); position: absolute; right: 70px; white-space: nowrap;
+  background: var(--dark2); color: var(--text); border: 1px solid rgba(200,169,110,0.2);
+  padding: 9px 13px; border-radius: 20px; font-size: 12px; letter-spacing: .5px;
+  opacity: 0; pointer-events: none; transform: translateX(8px); transition: all .25s ease;
+}
+.whatsapp-float:hover::after { opacity: 1; transform: translateX(0); }
+.whatsapp-inline {
+  display: inline-flex; align-items: center; gap: 9px; margin-top: 12px;
+  color: #25D366 !important; font-weight: 500; text-decoration: none;
+}
+.whatsapp-inline:hover { color: var(--gold) !important; }
+.whatsapp-cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: #25D366; color: #fff; border: none; padding: 16px 28px;
+  border-radius: 2px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 600; text-decoration: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: all .3s ease;
+}
+.whatsapp-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
+@media (max-width: 600px) {
+  .whatsapp-float { width: 52px; height: 52px; right: 16px; bottom: 16px; font-size: 25px; }
+  .whatsapp-float::after { display: none; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .home-about { grid-template-columns: 1fr; gap: 48px; }
+  .about-badge { left: 0; }
+  .gallery-page-grid { columns: 2; }
+  .gallery-strip { grid-template-columns: repeat(2,1fr); height: auto; }
+  .gallery-strip div { height: 180px; }
+  .calc-wrap { grid-template-columns: 1fr; }
+  .receipt { position: static; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .hero-stats { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .gallery-page-grid { columns: 1; }
+  .gallery-strip { grid-template-columns: repeat(2,1fr); }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .features-strip { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform: translateY(0); } }
+.hero-content > * { animation: fadeUp 0.8s ease forwards; opacity:0; }
+.hero-tag { animation-delay: 0.1s; }
+.hero-title { animation-delay: 0.25s; }
+.hero-sub { animation-delay: 0.4s; }
+.hero-btns { animation-delay: 0.55s; }
+
+.gold-line {
+  width: 48px; height: 1px; background: var(--gold); display: inline-block; vertical-align: middle; margin-right: 16px;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo" onclick="showPage('home')">Lumière <span>Studio</span></div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" data-page="home" class="active" data-sq="Kryefaqja" data-en="Home">Kryefaqja</a></li>
+    <li><a onclick="showPage('services')" data-page="services" data-sq="Shërbime" data-en="Services">Shërbime</a></li>
+    <li><a onclick="showPage('gallery')" data-page="gallery" data-sq="Galerinë" data-en="Gallery">Galerinë</a></li>
+    <li><a onclick="showPage('calculator')" data-page="calculator" data-sq="Llogaritje" data-en="Calculator">Llogaritje</a></li>
+    <li><a onclick="showPage('booking')" data-page="booking" data-sq="Rezervo" data-en="Book Now">Rezervo</a></li>
+    <li><a onclick="showPage('about')" data-page="about" data-sq="Rreth Nesh" data-en="About">Rreth Nesh</a></li>
+    <li><a onclick="showPage('contact')" data-page="contact" data-sq="Kontakt" data-en="Contact">Kontakt</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-toggle" onclick="toggleLang()" id="langBtn">EN</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');toggleMenu();" data-sq="Kryefaqja" data-en="Home">Kryefaqja</a>
+  <a onclick="showPage('services');toggleMenu();" data-sq="Shërbime" data-en="Services">Shërbime</a>
+  <a onclick="showPage('gallery');toggleMenu();" data-sq="Galerinë" data-en="Gallery">Galerinë</a>
+  <a onclick="showPage('calculator');toggleMenu();" data-sq="Llogaritje" data-en="Calculator">Llogaritje</a>
+  <a onclick="showPage('booking');toggleMenu();" data-sq="Rezervo" data-en="Book Now">Rezervo</a>
+  <a onclick="showPage('about');toggleMenu();" data-sq="Rreth Nesh" data-en="About">Rreth Nesh</a>
+  <a onclick="showPage('contact');toggleMenu();" data-sq="Kontakt" data-en="Contact">Kontakt</a>
+  <button class="lang-toggle mobile-lang" onclick="toggleLang()" id="langBtnMobile">EN</button>
+</div>
+
+<!-- ══════════ HOME ══════════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag" data-sq="Studio Eksluzive · Tiranë" data-en="Exclusive Studio · Tirana">Studio Eksluzive · Tiranë</div>
+      <h1 class="hero-title" data-sq="<em>Bukuria</em><br>Fillon Këtu" data-en="<em>Beauty</em><br>Begins Here">
+        <em>Bukuria</em><br>Fillon Këtu
+      </h1>
+      <p class="hero-sub" data-sq="Transformohuni me stilistët tanë të certifikuar. Lumière Studio – ku çdo vizitë është një eksperiencë e paharrueshme." data-en="Transform yourself with our certified stylists. Lumière Studio – where every visit is an unforgettable experience.">
+        Transformohuni me stilistët tanë të certifikuar. Lumière Studio – ku çdo vizitë është një eksperiencë e paharrueshme.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('booking')" data-sq="Rezervo Tani" data-en="Book Now">Rezervo Tani →</button>
+        <button class="btn-outline" onclick="showPage('services')" data-sq="Shiko Shërbimet" data-en="View Services">Shiko Shërbimet</button>
+        <a class="whatsapp-cta" href="https://wa.me/35569XXXXXXX?text=P%C3%ABrsh%C3%ABndetje%2C%20dua%20t%C3%AB%20rezervoj%20nj%C3%AB%20takim%20te%20Lumi%C3%A8re%20Studio." target="_blank" data-sq="WhatsApp" data-en="WhatsApp">WhatsApp</a>
+        <a class="whatsapp-cta" href="javascript:void(0)" onclick="openWhatsAppGeneral()" data-sq="WhatsApp" data-en="WhatsApp">💬 WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="hero-promo-card">
+      <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=700&q=90" alt="Premium hair salon experience">
+      <div class="promo-text">
+        <div class="promo-title" data-sq="Pamje e re, ndjesi luksi" data-en="New look, luxury feeling">Pamje e re, ndjesi luksi</div>
+        <div class="promo-sub" data-sq="Rezervo shpejt në WhatsApp ose shiko shërbimet tona." data-en="Book quickly on WhatsApp or view our services.">Rezervo shpejt në WhatsApp ose shiko shërbimet tona.</div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">8+</div><div class="stat-label" data-sq="Vjet Eksperiencë" data-en="Years Experience">Vjet Eksperiencë</div></div>
+      <div class="stat"><div class="stat-num">3K+</div><div class="stat-label" data-sq="Klientë Besnikë" data-en="Loyal Clients">Klientë Besnikë</div></div>
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label" data-sq="Specialistë" data-en="Specialists">Specialistë</div></div>
+    </div>
+  </section>
+
+  <div class="features-strip">
+    <div class="feat-item">
+      <div class="feat-icon">✦</div>
+      <div class="feat-text"><strong data-sq="Produkte Premium" data-en="Premium Products">Produkte Premium</strong><span data-sq="Kerastase, Olaplex, L'Oréal" data-en="Kerastase, Olaplex, L'Oréal">Kerastase, Olaplex, L'Oréal</span></div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">◈</div>
+      <div class="feat-text"><strong data-sq="Konsultë Falas" data-en="Free Consultation">Konsultë Falas</strong><span data-sq="Para çdo shërbimi" data-en="Before every service">Para çdo shërbimi</span></div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">❋</div>
+      <div class="feat-text"><strong data-sq="Ekip i Certifikuar" data-en="Certified Team">Ekip i Certifikuar</strong><span data-sq="Trajnime ndërkombëtare" data-en="International training">Trajnime ndërkombëtare</span></div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">◇</div>
+      <div class="feat-text"><strong data-sq="Ambient Luksoz" data-en="Luxury Ambiance">Ambient Luksoz</strong><span data-sq="Reaksion & mirëqenie" data-en="Relaxation & wellness">Relaksim & mirëqenie</span></div>
+    </div>
+  </div>
+
+  <div class="gallery-strip">
+    <div><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="salon"></div>
+    <div><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=600&q=80" alt="hair color"></div>
+    <div><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80" alt="styling"></div>
+    <div><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&q=80" alt="care"></div>
+  </div>
+
+  <div class="home-about">
+    <div class="about-img-wrap">
+      <img src="https://images.unsplash.com/photo-1470259078422-826894b933aa?w=800&q=80" alt="about salon">
+      <div class="about-badge">
+        <strong>8+</strong>
+        <span data-sq="Vjet Kujdes" data-en="Years of Care">Vjet Kujdes</span>
+      </div>
+    </div>
+    <div>
+      <div class="section-tag"><span class="gold-line"></span><span data-sq="Historia Jonë" data-en="Our Story">Historia Jonë</span></div>
+      <h2 class="section-title" data-sq="Pasion për <em>Bukurinë</em> Femërore" data-en="Passion for <em>Female</em> Beauty">Pasion për <em>Bukurinë</em> Femërore</h2>
+      <p style="color:var(--text-muted);margin-bottom:20px;line-height:1.9" data-sq="Lumière Studio u themelua me një vizion të qartë: të ofrojë shërbime të klasit botëror në zemër të Tiranës. Me mbi 8 vjet eksperiencë dhe një ekip stilistësh të trajnuar ndërkombëtarisht, ne kemi transformuar mijëra kliente." data-en="Lumière Studio was founded with a clear vision: to offer world-class services in the heart of Tirana. With over 8 years of experience and an internationally trained team of stylists, we have transformed thousands of clients.">
+        Lumière Studio u themelua me një vizion të qartë: të ofrojë shërbime të klasit botëror në zemër të Tiranës. Me mbi 8 vjet eksperiencë dhe një ekip stilistësh të trajnuar ndërkombëtarisht, ne kemi transformuar mijëra kliente.
+      </p>
+      <p style="color:var(--text-muted);margin-bottom:36px;line-height:1.9" data-sq="Çdo detail, nga produktet premium deri tek ambienti i studiuar, pasqyron angazhimin tonë për ekselencë dhe kujdes ndaj çdo klienti." data-en="Every detail, from premium products to the carefully designed environment, reflects our commitment to excellence and care for every client.">
+        Çdo detail, nga produktet premium deri tek ambienti i studiuar, pasqyron angazhimin tonë për ekselencë dhe kujdes ndaj çdo klienti.
+      </p>
+      <button class="btn-outline" onclick="showPage('about')" data-sq="Mëso Më Shumë" data-en="Learn More">Mëso Më Shumë →</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Lumière Studio</div>
+        <p class="footer-tagline" data-sq="Studio eksluzive e bukurisë dhe stilit femëror në qendër të Tiranës." data-en="Exclusive beauty and female style studio in the center of Tirana.">Studio eksluzive e bukurisë dhe stilit femëror në qendër të Tiranës.</p>
+        <div class="social-row">
+          <a class="social-link" href="https://instagram.com" target="_blank">📷</a>
+          <a class="social-link" href="https://facebook.com" target="_blank">𝑓</a>
+          <a class="social-link" href="https://tiktok.com" target="_blank">♪</a>
+          <a class="social-link" href="javascript:void(0)" onclick="openWhatsAppGeneral()" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title" data-sq="Navigim" data-en="Navigation">Navigim</div>
+        <ul class="footer-links">
+          <li><a onclick="showPage('services')" data-sq="Shërbime" data-en="Services">Shërbime</a></li>
+          <li><a onclick="showPage('gallery')" data-sq="Galeria" data-en="Gallery">Galeria</a></li>
+          <li><a onclick="showPage('calculator')" data-sq="Llogaritje Çmimesh" data-en="Price Calculator">Llogaritje Çmimesh</a></li>
+          <li><a onclick="showPage('booking')" data-sq="Rezervo" data-en="Book Now">Rezervo</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-sq="Kontakt" data-en="Contact">Kontakt</div>
+        <ul class="footer-links">
+          <li><a>Rr. Myslym Shyri, Tiranë</a></li>
+          <li><a href="tel:+35569XXXXXXX">+355 69 XXX XXXX</a></li>
+          <li><a href="javascript:void(0)" onclick="openWhatsAppGeneral()">WhatsApp: +355 69 XXX XXXX</a></li>
+          <li><a href="mailto:info@lumiere.al">info@lumiere.al</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Lumière Studio. All rights reserved.</span>
+      <span class="footer-copy" style="color:var(--gold)">✦ Tiranë, Albania</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════ SERVICES ══════════ -->
+<div class="page" id="page-services">
+  <div class="page-header">
+    <div class="section-tag"><span class="gold-line"></span><span data-sq="Çmime të Deklaruara" data-en="Transparent Pricing">Çmime të Deklaruara</span></div>
+    <h1 class="section-title" data-sq="Shërbimet <em>Tona</em>" data-en="Our <em>Services</em>">Shërbimet <em>Tona</em></h1>
+    <p style="color:var(--text-muted);max-width:540px;margin-top:12px" data-sq="Të gjitha çmimet janë të deklaruara qartë. Pa surpriza, pa kosto të fshehura." data-en="All prices are clearly stated. No surprises, no hidden costs.">Të gjitha çmimet janë të deklaruara qartë. Pa surpriza, pa kosto të fshehura.</p>
+  </div>
+  <div class="services-grid" id="servicesGrid"></div>
+  <footer style="margin-top:0">
+    <div class="footer-bottom"><span class="footer-copy">© 2025 Lumière Studio</span><button class="btn-primary" onclick="showPage('calculator')" data-sq="Llogarit Çmimin" data-en="Calculate Price" style="font-size:11px;padding:12px 28px">Llogarit Çmimin →</button></div>
+  </footer>
+</div>
+
+<!-- ══════════ GALLERY ══════════ -->
+<div class="page" id="page-gallery">
+  <div class="page-header">
+    <div class="section-tag"><span class="gold-line"></span><span data-sq="Punët Tona" data-en="Our Work">Punët Tona</span></div>
+    <h1 class="section-title" data-sq="<em>Galeria</em>" data-en="<em>Gallery</em>"><em>Galeria</em></h1>
+  </div>
+  <div class="gallery-page-grid">
+    <figure onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=85" alt="Balayage"><div class="gallery-caption">Balayage</div></figure>
+    <figure onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=700&q=85" alt="Ngjyrosje"><div class="gallery-caption">Ngjyrosje</div></figure>
+    <figure onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=700&q=85" alt="Styling"><div class="gallery-caption">Styling</div></figure>
+    <figure onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=700&q=85" alt="Kujdes Floku"><div class="gallery-caption">Kujdes Floku</div></figure>
+    <figure onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1560066984-138daaa5548c?w=700&q=85" alt="Studio"><div class="gallery-caption">Studio</div></figure>
+    <figure onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1470259078422-826894b933aa?w=700&q=85" alt="Keratin"><div class="gallery-caption">Keratin</div></figure>
+    <figure onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1500840216050-6ffa99d75160?w=700&q=85" alt="Manikyri"><div class="gallery-caption">Manikyri</div></figure>
+    <figure onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=700&q=85" alt="Grim"><div class="gallery-caption">Grim</div></figure>
+    <figure onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=700&q=85" alt="Shtrirje"><div class="gallery-caption">Shtrirje</div></figure>
+  </div>
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lb-close" onclick="closeLightbox()">×</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+</div>
+
+<!-- ══════════ CALCULATOR ══════════ -->
+<div class="page" id="page-calculator">
+  <div class="page-header">
+    <div class="section-tag"><span class="gold-line"></span><span data-sq="Llogaritës i Çmimeve" data-en="Price Calculator">Llogaritës i Çmimeve</span></div>
+    <h1 class="section-title" data-sq="Llogarit <em>Shërbimet</em> Tua" data-en="Calculate <em>Your</em> Services">Llogarit <em>Shërbimet</em> Tua</h1>
+    <p style="color:var(--text-muted);max-width:500px;margin-top:12px" data-sq="Zgjidh shërbimet dhe vari flokëve për të marrë çmimin total." data-en="Choose services and hair length to get the total price.">Zgjidh shërbimet dhe vari flokëve për të marrë çmimin total.</p>
+  </div>
+  <div class="calc-page">
+    <div class="calc-wrap">
+      <div class="calc-services" id="calcServices"></div>
+      <div class="receipt">
+        <div class="receipt-title" data-sq="Faturat Juaj" data-en="Your Receipt">Faturat Juaj</div>
+        <div class="receipt-items" id="receiptItems">
+          <div class="receipt-empty" data-sq="Zgjidhni shërbime nga lista →" data-en="Select services from the list →">Zgjidhni shërbime nga lista →</div>
+        </div>
+        <div class="receipt-total">
+          <span class="receipt-total-label" data-sq="Totali" data-en="Total">Totali</span>
+          <span class="receipt-total-val" id="receiptTotal">0 L</span>
+        </div>
+        <div class="receipt-time" id="receiptTime" style="display:none">
+          ⏱ <span data-sq="Kohëzgjatja" data-en="Duration">Kohëzgjatja</span>: &nbsp;<span id="totalTime">0 min</span>
+        </div>
+        <p class="receipt-note" data-sq="* Çmimet mund të ndryshojnë bazuar në gjatësinë dhe densitetin e flokut. Konsulta falas." data-en="* Prices may vary based on hair length and density. Free consultation included.">* Çmimet mund të ndryshojnë bazuar në gjatësinë dhe densitetin e flokut. Konsulta falas.</p>
+        <button class="btn-primary" onclick="showPage('booking')" style="width:100%;justify-content:center;margin-top:24px" data-sq="Rezervo Tani" data-en="Book Now">Rezervo Tani →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ BOOKING ══════════ -->
+<div class="page" id="page-booking">
+  <div class="page-header">
+    <div class="section-tag"><span class="gold-line"></span><span data-sq="Cakto Takimin" data-en="Make Appointment">Cakto Takimin</span></div>
+    <h1 class="section-title" data-sq="<em>Rezervo</em> Tani" data-en="<em>Book</em> Now"><em>Rezervo</em> Tani</h1>
+  </div>
+  <div class="booking-page">
+    <div class="booking-wrap">
+      <div id="bookingForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-sq="Emri" data-en="First Name">Emri</label>
+            <input class="form-input" type="text" placeholder="Elena" id="bName">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-sq="Mbiemri" data-en="Last Name">Mbiemri</label>
+            <input class="form-input" type="text" placeholder="Koci">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-sq="Telefoni" data-en="Phone">Telefoni</label>
+            <input class="form-input" type="tel" placeholder="+355 69 XXX XXXX" id="bPhone">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-sq="Email" data-en="Email">Email</label>
+            <input class="form-input" type="email" placeholder="elena@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-sq="Shërbimi" data-en="Service">Shërbimi</label>
+          <select class="form-input form-select" id="bService">
+            <option value="" data-sq="Zgjidh shërbimin..." data-en="Choose service...">Zgjidh shërbimin...</option>
+            <option data-sq="Prerje Floku" data-en="Haircut">Prerje Floku</option>
+            <option data-sq="Ngjyrosje" data-en="Hair Coloring">Ngjyrosje</option>
+            <option data-sq="Balayage / Highlights" data-en="Balayage / Highlights">Balayage / Highlights</option>
+            <option data-sq="Keratin / Braziliane" data-en="Keratin / Brazilian">Keratin / Braziliane</option>
+            <option data-sq="Shtrirje" data-en="Hair Straightening">Shtrirje</option>
+            <option data-sq="Gërshetim Nuse" data-en="Bridal Styling">Gërshetim Nuse</option>
+            <option data-sq="Manikyri & Pedikyr" data-en="Manicure & Pedicure">Manikyri & Pedikyr</option>
+            <option data-sq="Grim" data-en="Makeup">Grim</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-sq="Data" data-en="Date">Data</label>
+            <input class="form-input" type="date" id="bDate" min="">
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-sq="Ora" data-en="Time">Ora</label>
+            <select class="form-input form-select" id="bTime">
+              <option>09:00</option><option>09:30</option><option>10:00</option>
+              <option>10:30</option><option>11:00</option><option>11:30</option>
+              <option>12:00</option><option>12:30</option><option>13:00</option>
+              <option>14:00</option><option>14:30</option><option>15:00</option>
+              <option>15:30</option><option>16:00</option><option>17:00</option>
+              <option>17:30</option><option>18:00</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-sq="Shënime / Kerkesa Speciale" data-en="Notes / Special Requests">Shënime / Kerkesa Speciale</label>
+          <textarea class="form-input" rows="3" style="resize:vertical" placeholder="..." id="bNotes"></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitBooking()" data-sq="Konfirmo Rezervimin" data-en="Confirm Booking">Konfirmo Rezervimin →</button>
+      </div>
+      <div class="booking-success" id="bookingSuccess">
+        <div class="check-icon">✦</div>
+        <h3 data-sq="Rezervimi u Konfirmua!" data-en="Booking Confirmed!">Rezervimi u Konfirmua!</h3>
+        <p style="color:var(--text-muted);margin-top:12px" data-sq="Do të kontaktoheni brenda 24 orësh për konfirmim përfundimtar." data-en="You will be contacted within 24 hours for final confirmation.">Do të kontaktoheni brenda 24 orësh për konfirmim përfundimtar.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px">
+          <button class="whatsapp-cta" onclick="openWhatsAppBooking()" data-sq="Dërgo në WhatsApp" data-en="Send on WhatsApp">💬 Dërgo në WhatsApp</button>
+          <button class="btn-outline" onclick="resetBooking()" data-sq="Rezervo Përsëri" data-en="Book Again">Rezervo Përsëri</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ABOUT ══════════ -->
+<div class="page" id="page-about">
+  <div class="page-header">
+    <div class="section-tag"><span class="gold-line"></span><span data-sq="Historia & Ekipi" data-en="Story & Team">Historia & Ekipi</span></div>
+    <h1 class="section-title" data-sq="Rreth <em>Nesh</em>" data-en="About <em>Us</em>">Rreth <em>Nesh</em></h1>
+  </div>
+  <div class="about-page">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:80px" class="about-story-grid">
+      <div>
+        <p style="color:var(--text-muted);line-height:1.9;margin-bottom:20px" data-sq="Lumière Studio lindi nga pasioni ynë i thellë për bukurinë dhe transformimin. Të themeluar në vitin 2017, kemi ndërtuar një hapësirë ku çdo klienti ndjehet e vlerësuar dhe e kujdesur." data-en="Lumière Studio was born from our deep passion for beauty and transformation. Founded in 2017, we have built a space where every client feels valued and cared for.">
+          Lumière Studio lindi nga pasioni ynë i thellë për bukurinë dhe transformimin. Të themeluar në vitin 2017, kemi ndërtuar një hapësirë ku çdo klienti ndjehet e vlerësuar dhe e kujdesur.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.9" data-sq="Ekipi ynë ka marrë trajnime në Milano, Paris dhe Londër, duke sjellë teknikat më të fundit të stilit ndërkombëtar direkt në Tiranë." data-en="Our team has received training in Milan, Paris and London, bringing the latest international styling techniques directly to Tirana.">
+          Ekipi ynë ka marrë trajnime në Milano, Paris dhe Londër, duke sjellë teknikat më të fundit të stilit ndërkombëtar direkt në Tiranë.
+        </p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1560066984-138daaa5548c?w=700&q=80" style="width:100%;height:360px;object-fit:cover;border-radius:2px" alt="about">
+    </div>
+
+    <div class="section-tag"><span class="gold-line"></span><span data-sq="Vlerat Tona" data-en="Our Values">Vlerat Tona</span></div>
+    <div class="about-values">
+      <div class="value-card"><div class="value-num">01</div><div class="value-title" data-sq="Ekselencë" data-en="Excellence">Ekselencë</div><div class="value-text" data-sq="Standarde të larta në çdo shërbim, pa kompromise." data-en="High standards in every service, without compromise.">Standarde të larta në çdo shërbim, pa kompromise.</div></div>
+      <div class="value-card"><div class="value-num">02</div><div class="value-title" data-sq="Autenticiteti" data-en="Authenticity">Autenticiteti</div><div class="value-text" data-sq="Stili juaj, i amplifikuar nga ekspertiza jonë." data-en="Your style, amplified by our expertise.">Stili juaj, i amplifikuar nga ekspertiza jonë.</div></div>
+      <div class="value-card"><div class="value-num">03</div><div class="value-title" data-sq="Inovacioni" data-en="Innovation">Inovacioni</div><div class="value-text" data-sq="Teknikat dhe produktet më të fundit nga bota." data-en="The latest techniques and products from around the world.">Teknikat dhe produktet më të fundit nga bota.</div></div>
+      <div class="value-card"><div class="value-num">04</div><div class="value-title" data-sq="Kujdesi" data-en="Care">Kujdesi</div><div class="value-text" data-sq="Çdo klienti është unik dhe meritojmë kujdes të personalizuar." data-en="Every client is unique and deserves personalized care.">Çdo klienti është unik dhe meritojmë kujdes të personalizuar.</div></div>
+    </div>
+
+    <div style="margin-top:70px">
+      <div class="section-tag"><span class="gold-line"></span><span data-sq="Ekipi Ynë" data-en="Our Team">Ekipi Ynë</span></div>
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80" alt="Arta Basha">
+          <div class="team-info">
+            <div class="team-name">Arta Basha</div>
+            <div class="team-role" data-sq="Drejtoreshë & Stiliste" data-en="Director & Stylist">Drejtoreshë & Stiliste</div>
+            <div class="team-spec" data-sq="Balayage, Ngjyrosje Komplekse" data-en="Balayage, Complex Coloring">Balayage, Ngjyrosje Komplekse</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&q=80" alt="Mirela Gjoka">
+          <div class="team-info">
+            <div class="team-name">Mirela Gjoka</div>
+            <div class="team-role" data-sq="Stiliste Senior" data-en="Senior Stylist">Stiliste Senior</div>
+            <div class="team-spec" data-sq="Keratin, Shtrirje, Prerje" data-en="Keratin, Straightening, Cuts">Keratin, Shtrirje, Prerje</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&q=80" alt="Elsa Ndreka">
+          <div class="team-info">
+            <div class="team-name">Elsa Ndreka</div>
+            <div class="team-role" data-sq="Specialiste Grim" data-en="Makeup Specialist">Specialiste Grim</div>
+            <div class="team-spec" data-sq="Grim Nuse, Artistike" data-en="Bridal, Artistic Makeup">Grim Nuse, Artistike</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" alt="Dorina Hoxha">
+          <div class="team-info">
+            <div class="team-name">Dorina Hoxha</div>
+            <div class="team-role" data-sq="Specialiste Thonjsh" data-en="Nail Specialist">Specialiste Thonjsh</div>
+            <div class="team-spec" data-sq="Manikyri, Pedikyr, Nail Art" data-en="Manicure, Pedicure, Nail Art">Manikyri, Pedikyr, Nail Art</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ CONTACT ══════════ -->
+<div class="page" id="page-contact">
+  <div class="page-header">
+    <div class="section-tag"><span class="gold-line"></span><span data-sq="Na Gjeni" data-en="Find Us">Na Gjeni</span></div>
+    <h1 class="section-title" data-sq="<em>Kontakt</em> & Vendndodhja" data-en="<em>Contact</em> & Location"><em>Kontakt</em> & Vendndodhja</h1>
+  </div>
+  <div class="contact-page">
+    <div class="contact-grid">
+      <div class="contact-info-block">
+        <div class="contact-block">
+          <div class="contact-block-label" data-sq="Adresa" data-en="Address">Adresa</div>
+          <div class="contact-block-val">Rr. Myslym Shyri, Nr. 42<br>Tiranë, Albania</div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-label" data-sq="Telefoni" data-en="Phone">Telefoni</div>
+          <div class="contact-block-val"><a href="tel:+35569XXXXXXX">+355 69 XXX XXXX</a><br><a class="whatsapp-inline" href="javascript:void(0)" onclick="openWhatsAppGeneral()">💬 Shkruaj në WhatsApp</a></div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-label" data-sq="Email" data-en="Email">Email</div>
+          <div class="contact-block-val"><a href="mailto:info@lumiere.al">info@lumiere.al</a></div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-label" data-sq="Orari" data-en="Hours">Orari</div>
+          <table class="hours-table">
+            <tr><td data-sq="E Hënë – E Premte" data-en="Monday – Friday">E Hënë – E Premte</td><td>09:00 – 19:00</td></tr>
+            <tr><td data-sq="E Shtunë" data-en="Saturday">E Shtunë</td><td>09:00 – 18:00</td></tr>
+            <tr><td data-sq="E Diel" data-en="Sunday">E Diel</td><td><span style="color:var(--gold)" data-sq="Mbyllur" data-en="Closed">Mbyllur</span></td></tr>
+          </table>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-label" data-sq="Na Ndiqni" data-en="Follow Us">Na Ndiqni</div>
+          <div class="social-row">
+            <a class="social-link" href="https://instagram.com" target="_blank">📷</a>
+            <a class="social-link" href="https://facebook.com" target="_blank">𝑓</a>
+            <a class="social-link" href="https://tiktok.com" target="_blank">♪</a>
+          <a class="social-link" href="javascript:void(0)" onclick="openWhatsAppGeneral()" title="WhatsApp">💬</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.0!2d19.8187!3d41.3275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135031000000000%3A0x0!2sRr.+Myslym+Shyri%2C+Tiran%C3%AB!5e0!3m2!1ssq!2sal!4v1600000000000!5m2!1ssq!2sal"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Lumiere Studio Map">
+          </iframe>
+        </div>
+        <button class="btn-primary" onclick="showPage('booking')" style="margin-top:20px;width:100%;justify-content:center" data-sq="Rezervo Tani" data-en="Book Now">Rezervo Tani →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a class="whatsapp-float" href="javascript:void(0)" onclick="openWhatsAppGeneral()" aria-label="Shkruaj në WhatsApp" title="WhatsApp">💬</a>
+
+<script>
+// ── DATA ──
+const lang = { current: 'sq' };
+
+const services = [
+  { id:'haircut', icon:'✂️',
+    name: {sq:'Prerje Floku', en:'Haircut'},
+    desc: {sq:'Prerje profesionale e adaptuar sipas formës së fytyrës dhe dëshirës suaj. Përfshin larje dhe fëns.', en:'Professional cut adapted to your face shape and wishes. Includes wash and blow-dry.'},
+    variants: [
+      {label:{sq:'Flok i Shkurtër',en:'Short Hair'}, price:1200, time:45},
+      {label:{sq:'Flok Mesatar',en:'Medium Hair'}, price:1500, time:60},
+      {label:{sq:'Flok i Gjatë',en:'Long Hair'}, price:1800, time:75},
+    ]},
+  { id:'color', icon:'🎨',
+    name: {sq:'Ngjyrosje', en:'Hair Coloring'},
+    desc: {sq:'Ngjyrosje e plotë me produkte premium L\'Oréal & Schwarzkopf. Tono, mezzetono ose ngjyrë e plotë.', en:'Full coloring with premium L\'Oréal & Schwarzkopf products. Toner, semi-permanent or full color.'},
+    variants: [
+      {label:{sq:'Rrënjë',en:'Roots'}, price:2000, time:60},
+      {label:{sq:'E Plotë - I Shkurtër',en:'Full - Short'}, price:3000, time:90},
+      {label:{sq:'E Plotë - Mesatar',en:'Full - Medium'}, price:3800, time:120},
+      {label:{sq:'E Plotë - Gjatë',en:'Full - Long'}, price:4500, time:150},
+    ]},
+  { id:'balayage', icon:'✨',
+    name: {sq:'Balayage / Highlights', en:'Balayage / Highlights'},
+    desc: {sq:'Teknikë frençe për efekt natyral dhe të gjallë. Balayage, ombré, highlights klasike ose california.', en:'French technique for a natural and vibrant effect. Balayage, ombré, classic or california highlights.'},
+    variants: [
+      {label:{sq:'Highlights të Plota',en:'Full Highlights'}, price:4500, time:150},
+      {label:{sq:'Balayage',en:'Balayage'}, price:6000, time:180},
+      {label:{sq:'Ombré',en:'Ombré'}, price:5000, time:160},
+    ]},
+  { id:'keratin', icon:'💆',
+    name: {sq:'Keratin / Braziliane', en:'Keratin / Brazilian'},
+    desc: {sq:'Trajtim profesional keratine për flokë të lëmuar, të shndritshëm dhe pa vëlim për 3-6 muaj.', en:'Professional keratin treatment for smooth, shiny, frizz-free hair for 3-6 months.'},
+    variants: [
+      {label:{sq:'Flok i Shkurtër',en:'Short Hair'}, price:5000, time:120},
+      {label:{sq:'Flok Mesatar',en:'Medium Hair'}, price:7000, time:150},
+      {label:{sq:'Flok i Gjatë',en:'Long Hair'}, price:9000, time:180},
+    ]},
+  { id:'straight', icon:'〰️',
+    name: {sq:'Shtrirje', en:'Straightening'},
+    desc: {sq:'Shtrirje klasike me llokot ose drejtues profesional. Efekt deri 3 ditë.', en:'Classic straightening with flat iron or professional straightener. Effect up to 3 days.'},
+    variants: [
+      {label:{sq:'Flok i Shkurtër',en:'Short Hair'}, price:1500, time:45},
+      {label:{sq:'Flok Mesatar',en:'Medium Hair'}, price:2000, time:60},
+      {label:{sq:'Flok i Gjatë',en:'Long Hair'}, price:2500, time:75},
+    ]},
+  { id:'bridal', icon:'👑',
+    name: {sq:'Gërshetim & Nuse', en:'Bridal & Updo'},
+    desc: {sq:'Stilim special për ditën tuaj të madhe. Konsultë e lirë, provë e stilimit dhe grim profesional.', en:'Special styling for your big day. Free consultation, styling trial and professional makeup.'},
+    variants: [
+      {label:{sq:'Gërshetim',en:'Updo / Braid'}, price:4000, time:90},
+      {label:{sq:'Stilim Nuse',en:'Bridal Styling'}, price:8000, time:150},
+      {label:{sq:'Nuse + Grim',en:'Bridal + Makeup'}, price:12000, time:210},
+    ]},
+  { id:'nails', icon:'💅',
+    name: {sq:'Manikyri & Pedikyr', en:'Manicure & Pedicure'},
+    desc: {sq:'Kujdes i plotë i thonjve me produkte CND, OPI dhe Essie. Klasik, gel, akrilik ose nail art.', en:'Complete nail care with CND, OPI and Essie products. Classic, gel, acrylic or nail art.'},
+    variants: [
+      {label:{sq:'Manikyri Klasik',en:'Classic Manicure'}, price:800, time:30},
+      {label:{sq:'Manikyri Gel',en:'Gel Manicure'}, price:1500, time:60},
+      {label:{sq:'Pedikyr Klasik',en:'Classic Pedicure'}, price:1200, time:45},
+      {label:{sq:'Mani + Pedi',en:'Mani + Pedi'}, price:2500, time:90},
+    ]},
+  { id:'makeup', icon:'💋',
+    name: {sq:'Grim Profesional', en:'Professional Makeup'},
+    desc: {sq:'Grim ditësh ose darke me produkte Charlotte Tilbury, MAC dhe NARS. Durata rreth 4-8 orë.', en:'Day or evening makeup with Charlotte Tilbury, MAC and NARS products. Lasts approximately 4-8 hours.'},
+    variants: [
+      {label:{sq:'Grim Dite',en:'Day Makeup'}, price:2000, time:45},
+      {label:{sq:'Grim Darke',en:'Evening Makeup'}, price:3000, time:60},
+      {label:{sq:'Grim Nuse',en:'Bridal Makeup'}, price:5000, time:90},
+    ]},
+  { id:'treatment', icon:'🌿',
+    name: {sq:'Trajtime Floku', en:'Hair Treatments'},
+    desc: {sq:'Maska hidratuese, Olaplex, ampula me keratine dhe trajtimi kundër rënies së flokut.', en:'Hydrating masks, Olaplex, keratin ampoules and hair loss treatment.'},
+    variants: [
+      {label:{sq:'Maskë Hidratuese',en:'Hydrating Mask'}, price:1500, time:30},
+      {label:{sq:'Olaplex',en:'Olaplex'}, price:3000, time:45},
+      {label:{sq:'Ampulë Keratine',en:'Keratin Ampoule'}, price:2000, time:30},
+    ]},
+];
+
+// ── STATE ──
+const selected = {}; // id -> variant index
+
+// ── RENDER SERVICES PAGE ──
+function renderServices() {
+  const grid = document.getElementById('servicesGrid');
+  if (!grid) return;
+  grid.innerHTML = services.map(s => `
+    <div class="service-card">
+      <div class="svc-icon">${s.icon}</div>
+      <div class="svc-name">${s.name[lang.current]}</div>
+      <div class="svc-desc">${s.desc[lang.current]}</div>
+      <div class="svc-prices">
+        ${s.variants.map(v => `
+          <div class="price-row">
+            <span class="price-label">${v.label[lang.current]}</span>
+            <span class="price-val">${v.price.toLocaleString('sq-AL')} L</span>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+// ── RENDER CALCULATOR ──
+function renderCalc() {
+  const cont = document.getElementById('calcServices');
+  if (!cont) return;
+  cont.innerHTML = services.map(s => {
+    const selIdx = selected[s.id] !== undefined ? selected[s.id] : -1;
+    const isSel = selIdx >= 0;
+    return `
+      <div class="calc-item ${isSel?'selected':''}" id="ci-${s.id}" onclick="toggleService('${s.id}')">
+        <div class="calc-check">${isSel?'✓':''}</div>
+        <div class="calc-info">
+          <div class="calc-name">${s.icon} ${s.name[lang.current]}</div>
+          <div class="calc-time">⏱ ${s.variants[Math.max(0,selIdx)].time} min</div>
+          <div class="variants">
+            ${s.variants.map((v,i) => `
+              <button class="variant-btn ${selIdx===i?'active':''}" onclick="event.stopPropagation();selectVariant('${s.id}',${i})">${v.label[lang.current]} – ${v.price.toLocaleString('sq-AL')} L</button>
+            `).join('')}
+          </div>
+        </div>
+        <div class="calc-price-tag">${s.variants[Math.max(0,selIdx)].price.toLocaleString('sq-AL')} L</div>
+      </div>`;
+  }).join('');
+  updateReceipt();
+}
+
+function toggleService(id) {
+  if (selected[id] !== undefined) {
+    delete selected[id];
+  } else {
+    selected[id] = 0;
+  }
+  renderCalc();
+}
+
+function selectVariant(id, idx) {
+  selected[id] = idx;
+  renderCalc();
+}
+
+function updateReceipt() {
+  const items = document.getElementById('receiptItems');
+  const totalEl = document.getElementById('receiptTotal');
+  const timeEl = document.getElementById('receiptTime');
+  const totalTimeEl = document.getElementById('totalTime');
+  const keys = Object.keys(selected);
+  if (keys.length === 0) {
+    items.innerHTML = `<div class="receipt-empty">${lang.current==='sq'?'Zgjidhni shërbime nga lista →':'Select services from the list →'}</div>`;
+    totalEl.textContent = '0 L';
+    if (timeEl) timeEl.style.display = 'none';
+    return;
+  }
+  let total = 0, totalTime = 0;
+  items.innerHTML = keys.map(id => {
+    const s = services.find(x=>x.id===id);
+    const v = s.variants[selected[id]];
+    total += v.price;
+    totalTime += v.time;
+    return `<div class="receipt-row"><span class="receipt-row-name">${s.name[lang.current]} · ${v.label[lang.current]}</span><span class="receipt-row-price">${v.price.toLocaleString('sq-AL')} L</span></div>`;
+  }).join('');
+  totalEl.textContent = total.toLocaleString('sq-AL') + ' L';
+  if (timeEl) { timeEl.style.display='flex'; totalTimeEl.textContent = totalTime + ' min'; }
+}
+
+// ── PAGES ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === id);
+  });
+  const p = document.getElementById('page-' + id);
+  if (p) { p.classList.add('active'); window.scrollTo(0,0); }
+  if (id === 'services') renderServices();
+  if (id === 'calculator') renderCalc();
+}
+
+// ── LANGUAGE ──
+function toggleLang() {
+  lang.current = lang.current === 'sq' ? 'en' : 'sq';
+  const btn = document.getElementById('langBtn');
+  const btnM = document.getElementById('langBtnMobile');
+  if (btn) btn.textContent = lang.current === 'sq' ? 'EN' : 'SQ';
+  if (btnM) btnM.textContent = lang.current === 'sq' ? 'EN' : 'SQ';
+  applyLang();
+}
+
+function applyLang() {
+  document.querySelectorAll('[data-sq]').forEach(el => {
+    const val = el.dataset[lang.current];
+    if (val) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = val;
+      else el.innerHTML = val;
+    }
+  });
+  // Re-render dynamic pages
+  const activePage = document.querySelector('.page.active');
+  if (activePage) {
+    const id = activePage.id.replace('page-','');
+    if (id === 'services') renderServices();
+    if (id === 'calculator') renderCalc();
+  }
+}
+
+// ── HAMBURGER ──
+function toggleMenu() {
+  const h = document.getElementById('hamburger');
+  const m = document.getElementById('mobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+
+// ── LIGHTBOX ──
+function openLightbox(fig) {
+  const img = fig.querySelector('img');
+  document.getElementById('lightboxImg').src = img.src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+
+// ── WHATSAPP ──
+// Zëvendësoni numrin më poshtë me numrin real të salonit, pa + dhe pa hapësira.
+const WHATSAPP_NUMBER = '35569XXXXXXX';
+
+function openWhatsApp(message) {
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank', 'noopener');
+}
+
+function openWhatsAppGeneral() {
+  const msg = lang.current === 'sq'
+    ? 'Përshëndetje Lumière Studio! Dua informacion ose të bëj një rezervim.'
+    : 'Hello Lumière Studio! I would like information or to make a booking.';
+  openWhatsApp(msg);
+}
+
+function openWhatsAppBooking() {
+  const name = document.getElementById('bName')?.value.trim() || '';
+  const phone = document.getElementById('bPhone')?.value.trim() || '';
+  const service = document.getElementById('bService')?.selectedOptions?.[0]?.textContent.trim() || '';
+  const date = document.getElementById('bDate')?.value || '';
+  const time = document.getElementById('bTime')?.value || '';
+  const notes = document.getElementById('bNotes')?.value.trim() || '';
+  const msg = lang.current === 'sq'
+    ? `Përshëndetje Lumière Studio! Dua të konfirmoj rezervimin.\nEmri: ${name}\nTelefoni: ${phone}\nShërbimi: ${service}\nData: ${date}\nOra: ${time}\nShënime: ${notes}`
+    : `Hello Lumière Studio! I would like to confirm my booking.\nName: ${name}\nPhone: ${phone}\nService: ${service}\nDate: ${date}\nTime: ${time}\nNotes: ${notes}`;
+  openWhatsApp(msg);
+}
+
+// ── BOOKING ──
+function submitBooking() {
+  const name = document.getElementById('bName').value.trim();
+  if (!name) { alert(lang.current==='sq'?'Ju lutem shkruani emrin tuaj.':'Please enter your name.'); return; }
+  document.getElementById('bookingForm').style.display = 'none';
+  document.getElementById('bookingSuccess').style.display = 'block';
+}
+function resetBooking() {
+  document.getElementById('bookingForm').style.display = 'block';
+  document.getElementById('bookingSuccess').style.display = 'none';
+}
+
+// Set min date for booking
+const dateInput = document.getElementById('bDate');
+if (dateInput) { const t = new Date(); dateInput.min = t.toISOString().split('T')[0]; }
+
+// Init
+renderServices();
+</script>
+</body>
+</html>
